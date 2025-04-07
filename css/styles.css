@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    position: relative;
+    perspective: 1000px;
+    width: 600px;
+    height: 300px;
+}
+
+.rectangle {
+    width: 600px;
+    height: 300px;
+    background-color: #ad916c;
+    z-index: 1; /* อยู่ด้านล่างสุด */
+}
+
+/* ใช้ฟอนต์จาก Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;500&display=swap');
+
+.paper {
+    width: 500px;
+    height: 400px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 90%;
+    left: 8%;
+    transform: translateY(-10%);
+    visibility: hidden;
+    transition: transform 2s ease;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom right, #ffffff, #ffffff);
+}
+
+.message {
+    flex: 1;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #000000;
+    font-family: 'Lobster', cursive;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.5;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 20px;
+}
+
+.images-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.image-container {
+    margin-left: 135px;
+    width: 200px;
+    height: 200px;
+    border-radius: 0%;
+    overflow: hidden;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+}
+
+.birthday-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ให้รูปอยู่ในกรอบและครอบคลุมพื้นที่ทั้งหมดโดยไม่ยืด */
+}
+
+
+/* กำหนดการเคลื่อนไหวเมื่อเปิดกระดาษ */
+@keyframes openPaper {
+    0% {
+        transform: translateY(-40%); /* เริ่มจากที่ด้านล่าง */
+        z-index: 2;
+        visibility: hidden;
+    }
+    25% {
+        transform: translateY(-100%); /* เลื่อนขึ้นเกินสี่เหลี่ยม */
+        z-index: 3;
+        visibility: hidden;
+    }
+    50% {
+        transform: translateY(-330%); /* เลื่อนขึ้นเกินสี่เหลี่ยม */
+        z-index: 4;
+    }
+    
+    100% {
+        transform: translateY(-70%); /* เลื่อนลงมาทับสี่เหลี่ยม */
+        z-index: 4;
+    }
+}
+
+/* เมื่อเปิดกระดาษ */
+.paper.show {
+    visibility: visible;
+    animation: openPaper 5s forwards; /* ใช้ animation ที่กำหนด */
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 300px solid transparent;
+    border-right: 300px solid transparent;
+    border-top: 150px solid #bfa37f;
+    position: absolute;
+    top: 0;
+    transform-origin: top;
+    transform: rotateX(0deg);
+    transition: transform 1.2s ease;
+    z-index: 1;
+}
+
+.triangle-rotated {
+    transform: rotateX(180deg);
+    transition: transform 2s ease;
+}
+
+.triangle-left {
+    width: 0;
+    height: 0;
+    border-left: 600px solid transparent;
+    border-top: 300px solid #cbaf8a;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(180deg);
+    z-index: 3;
+}
+
+.triangle-right {
+    width: 0;
+    height: 0;
+    border-right: 600px solid transparent;
+    border-top: 300px solid #d2b48c;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: rotate(180deg);
+    z-index: 3;
+}
+
+.my-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 16px;
+    background-color: #4f9351;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.my-button:hover {
+    background-color: #558857;
+}
